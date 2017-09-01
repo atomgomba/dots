@@ -1,5 +1,11 @@
 #!/bin/sh
 
+which git > /dev/null
+if [ "$?" = "1" ]; then
+  echo "ERROR: Git is not installed or is not on the system path!"
+  exit 1
+fi
+
 DOTS_SHELL_ALIAS=${1:-"dots"}
 DOTS_GIT_DIR=${2:-"$HOME/.dotfiles"}
 
@@ -45,7 +51,7 @@ fi
 CFGCMD="git --git-dir=$DOTS_GIT_DIR config --bool status.showUntrackedFiles"
 SHOW_UNTRACKED="$($CFGCMD)"
 if [ -z "$SHOW_UNTRACKED" -o "$SHOW_UNTRACKED" = "true" ]; then
-    echo "* set status.showUntrackedFiles to false for repo at '$DOTS_GIT_DIR'"
-    eval "$CFGCMD false"
+  echo "* set status.showUntrackedFiles to false for repo at '$DOTS_GIT_DIR'"
+  eval "$CFGCMD false"
 fi
 
