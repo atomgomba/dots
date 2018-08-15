@@ -52,6 +52,6 @@ CFGCMD="git --git-dir=$DOTS_GIT_DIR config --bool status.showUntrackedFiles"
 SHOW_UNTRACKED="$($CFGCMD)"
 if [ -z "$SHOW_UNTRACKED" -o "$SHOW_UNTRACKED" = "true" ]; then
   echo "* set status.showUntrackedFiles to false for repo at '$DOTS_GIT_DIR'"
-  eval "$CFGCMD false"
+  eval "$CFGCMD no"
 fi
 
